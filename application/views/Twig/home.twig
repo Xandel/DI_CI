@@ -1,0 +1,43 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+
+    <h1>Welcome to DI_CI!</h1>
+
+    <p>这是一个整合了<a href="https://codeigniter.com" target="_blank">CodeIgniter(v3.1.5)</a>和<a href="http://php-di.org" target="_blank">PHP_DI(v6.0.11)</a>的Demo。通过PHP_DI，在不改动框架核心文件和不改变框架原有功能的前提下，让在CodeIgniter上构建的项目可以使用依赖注入。</p>
+ 
+    <p>源码获取</p>
+
+    <ul class="collection">
+
+        {% for article in articles %}
+            <li class="collection-item avatar" style="height: auto;">
+
+                <i class="mdi-editor-insert-comment circle"></i>
+
+                <span class="title">{{ article.title }}</span>
+
+                <p>{{ article.content }}</p>
+
+                <p><a href="/article/{{ article.id }}">Read more</a></p>
+
+            </li>
+        {% endfor %}
+
+            <li class="collection-item avatar">
+
+                <i class="mdi-editor-insert-comment circle"></i>
+
+                <span class="title">CI框架原生首页</span>
+
+                <p>该页面由原CI框架资源构建，与改造后的框架完全兼容。</p>
+
+                <p><a href="/home/ci_raw">Read more</a></p>
+
+            </li>
+
+    </ul>
+
+    <hr/>
+
+{% endblock %}
