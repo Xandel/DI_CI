@@ -61,20 +61,18 @@ class MY_Hooks extends CI_Hooks {
 	{
 		if ($which === 'post_controller_constructor') 
 		{
-		    // 重载 Controller实例$CI，改由DI容器生成，从而在所有控制器中实现依赖注入
-		    global $CI, $class;	
-		    
-		    // 实例化构建器
-			if (self::$di_container_builder == NULL) {
-			    self::$di_container_builder = new DI\ContainerBuilder;
-			}
             // 由于实现依赖注入后，为了实现松耦合，控制器不再继承CI_Controller，但为了仍可以访问 CodeIgniter资源，需要实例化CI_Controller类
 			if (self::$ci == NULL) {
 		        self::$ci = new CI_Controller;
 			}
+		    // 实例化构建器
+			if (self::$di_container_builder == NULL) {
+			    self::$di_container_builder = new DI\ContainerBuilder;
+			}			
 			// 构建DI容器
             $container = self::$di_container_builder->addDefinitions(APPPATH.'config/di.php')->build();
-            // 取得控制器实例
+		    // 重载 Controller实例$CI，改由DI容器生成，从而在所有控制器中实现依赖注入
+		    global $CI, $class;				
 			$CI = $container->get($class);
 		}
 

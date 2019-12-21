@@ -10,6 +10,6 @@
 
 要注意的一点是，不能在控制器的构造函数里使用参数type-hint的方式注入依赖，建议使用属性注入。
 
-详细说明请参看：https://zhuanlan.zhihu.com/p/98644060
+详细解析请参看：https://zhuanlan.zhihu.com/p/98644060
 
 Demo演示地址：http://andel.xlphp.net
